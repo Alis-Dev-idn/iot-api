@@ -5,6 +5,7 @@ const https = require("https");
 const http = require("http");
 const fs = require("fs");
 const {CreateServerIo} = require("../socket_io");
+const {StartMongoDb} = require("../mongodb");
 const router = require("../../routes");
 
 let server;
@@ -32,6 +33,7 @@ const Run = () => {
 
  server.listen(process.env.PORT_HOST , () => {
     CreateServerIo(server);
+    StartMongoDb();
     console.log(`server is runing in port ${process.env.PORT_HOST}`);
  });   
  

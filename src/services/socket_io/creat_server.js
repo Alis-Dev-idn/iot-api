@@ -9,7 +9,9 @@ const CreateServerIo = (server) => {
             methods: ["GET", "POST"],
             credentials: true,
         },
-        allowEIO3: true
+        allowEIO3: true,
+        pingInterval: 10000,
+        pingTimeout: 5000,
     });
 
     io.on("connection", (socket) => {

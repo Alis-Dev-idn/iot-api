@@ -1,4 +1,5 @@
 const {Server} = require("socket.io");
+const ListenServer = require("./listen_server");
 let io;
 
 const CreateServerIo = (server) => {
@@ -10,16 +11,12 @@ const CreateServerIo = (server) => {
         },
         allowEIO3: true
     });
-    console.log("Io is open");
+
     io.on("connection", (socket) => {
-        console.log("some one Connect server!");
-        socket.on("disconnect", () => {
-            console.log("some one disconnect!");
-        });
-        socket.on("testing", (data) => {
-            console.log(data);
-        })
+        ListenServer(socket);
     });
+
+    console.log("Io is open");
 }
 
 module.exports = {

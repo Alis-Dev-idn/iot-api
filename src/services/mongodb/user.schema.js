@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
+    email: String,
     username: {
         type: String,
         required: true
@@ -8,6 +9,10 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    role: {
+        type: String,
+        default: "user"
     },
     session: {
         type: Object({

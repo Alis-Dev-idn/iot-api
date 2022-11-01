@@ -1,9 +1,11 @@
 const StartMongoDb = require("./connect.mongodb");
 const UserSchema = require("./user.schema");
 const DataSchema = require("./data.schema");
+const SensorSchema = require("./sensor_schema");
 
 module.exports = {
     StartMongoDb,
     UserSchema,
-    DataSchema
+    DataSchema,
+    SensorSchema,
 };

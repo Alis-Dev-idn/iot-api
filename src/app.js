@@ -1,5 +1,5 @@
 const {config} = require("dotenv");
-config({path: "./src/.env"});
+config();
 const {StartServer} = require("./services");
 
 

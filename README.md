@@ -10,8 +10,11 @@
 ```npm run dev```
 
 ## error?
-- pastikan file .env.example replace menjadi ```.env``` kemudian isi.
+- pastikan file ```.env.example``` replace menjadi ```.env``` kemudian isi.
 - coba run kembali.
+
+## Dokumentasi
+- menyusul ...
 
 ### Keterangan
 - belajar API IoT

@@ -23,10 +23,15 @@ const CreateUser = async (data) => {
     return await db.UserSchema.create(data);
 }
 
+const DeleteUser = async (id) => {
+    return await db.UserSchema.deleteOne({_id: id});
+}
+
 module.exports = {
     GetUserByName,
     GetUserByEmail,
     GetUserById,
     GetAllUsers,
-    CreateUser
+    CreateUser,
+    DeleteUser
 }

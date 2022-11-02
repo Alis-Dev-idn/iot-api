@@ -11,13 +11,17 @@ const UserLogin = async (req, res) => {
         const cekUser = await db.GetUserByName(body.username);
         if(!cekUser) return res.status(404).json({message: "username not found!"});
         if(!await pwd.ComparePassword(body.password, cekUser.password)) return res.status(400).json({message: "password wrong"});
-        if(!cekUser.session || !cekUser.session.active) return res.status(403).json({message: "akun not actived!"});
-        body.session.token = GenerateToken(cekUser._id);
-        await db.UpdateUser(cekUser.id, body);
+        if(!cekUser.session || !cekUser.session.status) return res.status(403).json({message: "akun not actived!"});
+        cekUser.session.token = await GenerateToken(cekUser._id);
+        await db.UpdateUser(cekUser.id, cekUser);
         res.status(200).json({
             status: "Login Ok",
             session: "1 hours",
-            data: cekUser
+            data: {
+                username: cekUser.username,
+                email: cekUser.email,
+                role: cekUser.role,
+            }
         });
     }catch(err){
         console.log(err);
@@ -25,16 +29,16 @@ const UserLogin = async (req, res) => {
     }
 }
 
-const GenerateDate = () => {
+const GenerateDate = async () => {
     let date = new Date();
     return date = date.setDate(date.getHours + 7);
 }
 
-const GenerateToken = (id) => {
-    const date = GenerateDate();
-    return jwt.sign({
+const GenerateToken = async (id) => {
+    const date = await GenerateDate();
+    return await jwt.sign({
         exp: Math.floor(Date(date) / 1000) + (60*60),
-        id: id
+        data: {id: id}
     }, process.env.PRIVAT_KEY)
 }
 

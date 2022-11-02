@@ -16,7 +16,7 @@ const SendMail =  async (username, email, code) => {
         to: email,
         subject: "Activated Your Account",
         html: `<p>active account : 
-        <a href=\"${process.env.SSL? `https://${process.env.HOST_URL}:${process.env.PORT_HOST}/active?username=${username}&code=${code}` 
+        <a href=\"${process.env.SSL == "true"? `https://${process.env.HOST_URL}:${process.env.PORT_HOST}/active?username=${username}&code=${code}` 
         : `http://${process.env.HOST_URL}:${process.env.PORT_HOST}/active?username=${username}&code=${code}` }\">klik</a></p>`
     });
     console.log(send.messageId);

@@ -13,7 +13,13 @@ const CreateUser = joi.object({
     ).allow(null),
 });
 
+const UserLogin = joi.object({
+    username: joi.string().required(),
+    password: joi.string().min(6).required(),
+    email: joi.string().email().required()
+})
 
 module.exports = {
-    CreateUser
+    CreateUser,
+    UserLogin
 };

@@ -1,7 +1,8 @@
 const db = require("../mongodb");
 
-const GetUserByName = async (name) => {
-    return await db.UserSchema.findOne({username: name}, {password: 0, __v: 0});
+const GetUserByName = async (name, hidden) => {
+    if(!hidden) return await db.UserSchema.findOne({username: name}, { __v: 0});
+    return await db.UserSchema.findOne({username: name}, { __v: 0, password: 0});
 }
 
 const GetUserByEmail = async (email) => {
@@ -23,6 +24,10 @@ const CreateUser = async (data) => {
     return await db.UserSchema.create(data);
 }
 
+const UpdateUser = async (id, data) => {
+    return await db.UserSchema.updateOne({_id: id}, data);
+}
+
 const DeleteUser = async (id) => {
     return await db.UserSchema.deleteOne({_id: id});
 }
@@ -33,5 +38,6 @@ module.exports = {
     GetUserById,
     GetAllUsers,
     CreateUser,
-    DeleteUser
+    DeleteUser,
+    UpdateUser
 }

@@ -24,12 +24,15 @@ const UserSchema = mongoose.Schema({
                 type: Boolean,
                 default: false
             },
+            code: {
+                type: String,
+                default: ""
+            },
             token: {
                 type: String,
-                required: true
+                default: ""
             }
-        }),
-        default: null
+        })
     }
 }, {timestapms: true});
 

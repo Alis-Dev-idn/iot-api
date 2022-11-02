@@ -5,6 +5,7 @@ const users = Router();
 
 users.get("/:id", Users.GetUser);
 users.get("/", Users.GetUser);
+users.post("/login", Users.UserLogin);
 users.post("/", Users.CreateNewUser);
 users.delete("/", Users.DeleteUser);
 users.delete("/:id", Users.DeleteUser);

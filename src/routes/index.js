@@ -1,17 +1,8 @@
-const express = require("express");
-const sensor = require("./data_sensor");
-const users = require("./user_routes");
-const active = require("./active_account");
+import express from "express";
+import UserRoute from "./user_routes/user.routes.js";
 
-const router = express();
+const Routes = express();
 
-router.use("/sensor", sensor);
-router.use("/user", users);
-router.use("/active", active);
+Routes.use("/user", UserRoute);
 
-//handle url missing
-router.use(function(req, res, next) {
-    return res.status(404).json({message: "wrong url"});
-});
-
-module.exports = router;
+export default Routes;

@@ -1,9 +1,5 @@
-const Sensor = require("./sensor_controller");
-const Users = require("./users_controller");
-const ActiveAccount  =require("./active_controller");
+import User from "./user_controller/index.js"
 
-module.exports = {
-    Sensor,
-    Users,
-    ActiveAccount
+export {
+    User
 }

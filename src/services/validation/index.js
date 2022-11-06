@@ -1,5 +1,7 @@
-const ValidObjectId = require("./mongo.id.validate");
+import DbValidate from "./db.id.validate.js";
+import UserValidate from "./user.validate.js";
 
-module.exports = {
-    ValidObjectId
-};
+export default {
+    DbValidate,
+    UserValidate
+}

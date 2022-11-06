@@ -1,7 +1,5 @@
-const {config} = require("dotenv");
+import { config } from "dotenv";
 config();
-const {StartServer} = require("./services");
+import Run from "./server/server.js";
 
-
-//Run the server
-StartServer.Run();
+Run();

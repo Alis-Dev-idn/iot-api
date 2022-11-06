@@ -1,13 +1,12 @@
-const IoServices = require("./socket_io");
-const StartServer = require("./setup_server");
-const DbService = require("./mongodb");
-const UserService = require("./user_service");
-const Validate = require("./validation");
+import Validate from "./validation/index.js"
+import UserService from "./user_service/index.js"
+import MailService from "./mail_service/mail.service.js";
+import PasswordService from "./pwd_service/pwd.service.js"
 
-module.exports = {
-    IoServices,
-    StartServer,
-    DbService,
+
+export {
+    Validate,
     UserService,
-    Validate
+    MailService,
+    PasswordService
 }

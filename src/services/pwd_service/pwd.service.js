@@ -5,8 +5,7 @@ const Hast= async (password) => {
     return await bcrypt.hashSync(password, salt);
 }
 
-const Validate = async (password, hast,data) => {
-    console.log(password, hast, data);
+const Validate = async (password, hast) => {
     return await bcrypt.compare(password, hast);
 }
 

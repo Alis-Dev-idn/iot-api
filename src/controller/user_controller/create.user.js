@@ -1,5 +1,6 @@
 import {MailService, PasswordService, UserService, Validate} from "../../services/index.js";
 import {v4} from "uuid";
+import {decrypt} from "n-krypta";
 
 let session = {
     active: false,
@@ -11,17 +12,17 @@ let session = {
 const Create = async (req, res) => {
     try{
         let {body} = req;
-
-        const {error} = await Validate.UserValidate.CreateUser.validate(body);
+        const data = decrypt(body.data, process.env.SECRET_KEY_DATA);
+        const {error} = await Validate.UserValidate.CreateUser.validate(data);
         if(error) return res.status(400).json({message: error.details[0].message});
-        const cekBody = await CekUser(body);
+        const cekBody = await CekUser(data);
         if(cekBody) return res.status(400).json({message: cekBody});
 
-        body.password = await PasswordService.Hast(body.password);
+        body.password = await PasswordService.Hast(data.password);
         body.session = session;
-        await UserService.Create.CreateUser(body);
-        await CreateDefaultProfile(body.username);
-        await MailService.SendMail(body.username, body.email, session.code);
+        await UserService.Create.CreateUser(data);
+        await CreateDefaultProfile(data.username);
+        await MailService.SendMail(data.username, data.email, session.code);
         res.status(200).json({status: "success", message: "please cek your email to active account"});
     }catch (err){
         console.log(err);

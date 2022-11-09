@@ -6,6 +6,7 @@ const Hast= async (password) => {
 }
 
 const Validate = async (password, hast) => {
+    console.log(password, hast);
     return await bcrypt.compare(password, hast);
 }
 

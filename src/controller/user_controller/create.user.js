@@ -12,7 +12,7 @@ let session = {
 const Create = async (req, res) => {
     try{
         let {body} = req;
-        const data = decryptData(body.data)
+        const data = decryptData(body.data, process.env.SECRET_KEY_DATA);
         const {error} = await Validate.UserValidate.CreateUser.validate(data);
         if(error) return res.status(400).json({message: error.details[0].message});
         const cekBody = await CekUser(data);

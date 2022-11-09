@@ -22,7 +22,8 @@ const Login = async (req, res) => {
             data: {
                 username: cekEmail.username,
                 email: cekEmail.email,
-                role: cekEmail.role
+                role: cekEmail.role,
+                token: cekEmail.session.token
             }
         });
     }catch (err){

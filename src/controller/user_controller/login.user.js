@@ -11,16 +11,16 @@ const Login = async (req, res) => {
         const cekEmail = await UserService.GetUser("email", body.email, false);
         if(!cekEmail) return res.status(400).json({message: "email not found, please register first"});
         if(!await PasswordService.Validate(body.password, cekUser.password)) return res.status(400).json({message: "password wrong"});
-        if(!cekUser.session || !cekUser.session.status) return res.status(403).json({message: "account not active"});
-        cekUser.session.token = await GenerateToken(cekUser._id);
-        await UserService.UpdateUser("user", cekUser);
+        if(!cekEmail.session || !cekEmail.session.status) return res.status(403).json({message: "account not active"});
+        cekEmail.session.token = await GenerateToken(cekEmail._id);
+        await UserService.UpdateUser("user", cekEmail);
         res.status(200).json({
             status: "success",
             session: "1h",
             data: {
-                username: cekUser.username,
-                email: cekUser.email,
-                role: cekUser.role
+                username: cekEmail.username,
+                email: cekEmail.email,
+                role: cekEmail.role
             }
         });
     }catch (err){

@@ -17,6 +17,7 @@ const Create = async (req, res) => {
         if(error) return res.status(400).json({message: error.details[0].message});
         const cekBody = await CekUser(data);
         if(cekBody) return res.status(400).json({message: cekBody});
+
         data.password = await PasswordService.Hast(data.password);
         data.session = session;
         await UserService.Create.CreateUser(data);

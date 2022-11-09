@@ -7,7 +7,7 @@ config();
 const Login = async (req, res) => {
     try{
         const {body} = req;
-        const data = decryptData(body, process.env.SECRET_KEY_DATA);
+        const data = decryptData(body.data, process.env.SECRET_KEY_DATA);
         const {error} = Validate.UserValidate.UserLogin.validate(data);
         if(error) return res.status(400).json({message: error.details[0].message});
         const cekEmail = await UserService.GetUser("email", data.email, false);

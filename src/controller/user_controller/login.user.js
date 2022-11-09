@@ -10,7 +10,7 @@ const Login = async (req, res) => {
         if(error) return res.status(400).json({message: error.details[0].message});
         const cekEmail = await UserService.GetUser("email", body.email, false);
         if(!cekEmail) return res.status(400).json({message: "email not found, please register first"});
-        if(!await PasswordService.Validate(body.password, cekUser.password)) return res.status(400).json({message: "password wrong"});
+        if(!await PasswordService.Validate(body.password, cekEmail.password)) return res.status(400).json({message: "password wrong"});
         if(!cekEmail.session || !cekEmail.session.status) return res.status(403).json({message: "account not active"});
         cekEmail.session.token = await GenerateToken(cekEmail._id);
         await UserService.UpdateUser("user", cekEmail);

@@ -18,8 +18,8 @@ const Create = async (req, res) => {
         const cekBody = await CekUser(data);
         if(cekBody) return res.status(400).json({message: cekBody});
 
-        body.password = await PasswordService.Hast(data.password);
-        body.session = session;
+        data.password = await PasswordService.Hast(data.password);
+        data.session = session;
         await UserService.Create.CreateUser(data);
         await CreateDefaultProfile(data.username);
         await MailService.SendMail(data.username, data.email, session.code);

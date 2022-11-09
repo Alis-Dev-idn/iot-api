@@ -7,7 +7,7 @@ const Login = async (req, res) => {
     try{
         const {body} = req;
         const {error} = Validate.UserValidate.UserLogin.validate(body);
-        if(error) return res.status(400).message(`${error.details[0].message}`);
+        if(error) return res.status(400).json({message: error.details[0].message});
         const cekUser = await UserService.GetUser("name", body.username, false);
         if(!cekUser) return res.status(404).json({message: "username not found"});
         const cekEmail = await UserService.GetUser("email", body.email, false);

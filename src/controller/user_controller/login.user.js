@@ -1,13 +1,13 @@
 import {UserService, Validate, PasswordService} from "../../services/index.js";
 import jwt from "jsonwebtoken";
-import {decrypt} from "n-krypta";
 import {config} from "dotenv"
+import {decryptData} from "../../utils/utils.js";
 config();
 
 const Login = async (req, res) => {
     try{
         const {body} = req;
-        const data = decrypt(body.data, process.env.SECRET_KEY_DATA);
+        const data = decryptData(body);
         const {error} = Validate.UserValidate.UserLogin.validate(data);
         if(error) return res.status(400).json({message: error.details[0].message});
         const cekEmail = await UserService.GetUser("email", data.email, false);

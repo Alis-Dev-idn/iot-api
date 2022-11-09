@@ -8,11 +8,8 @@ const Login = async (req, res) => {
         const {body} = req;
         const {error} = Validate.UserValidate.UserLogin.validate(body);
         if(error) return res.status(400).json({message: error.details[0].message});
-        const cekUser = await UserService.GetUser("name", body.username, false);
-        if(!cekUser) return res.status(404).json({message: "username not found"});
         const cekEmail = await UserService.GetUser("email", body.email, false);
         if(!cekEmail) return res.status(400).json({message: "email not found"});
-        if(cekUser.email !== cekEmail.email) return res.status(400).json({message: "username and email not match"});
         if(!await PasswordService.Validate(body.password, cekUser.password)) return res.status(400).json({message: "password wrong"});
         if(!cekUser.session || !cekUser.session.status) return res.status(403).json({message: "account not active"});
         cekUser.session.token = await GenerateToken(cekUser._id);

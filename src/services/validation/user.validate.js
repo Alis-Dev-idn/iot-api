@@ -14,7 +14,6 @@ const CreateUser = joi.object({
 });
 
 const UserLogin = joi.object({
-    username: joi.string().required(),
     password: joi.string().min(6).required(),
     email: joi.string().email().required()
 });

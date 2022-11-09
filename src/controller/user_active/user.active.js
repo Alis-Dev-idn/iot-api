@@ -6,7 +6,7 @@ const Active = async (req, res) => {
         if(!username || !code) return res.status(400).json({message: "cek your email"});
         const cekUser = await UserService.GetUser("name", username, false);
         if(!cekUser) return res.status(400).json({message: "user not found"});
-        if(code !== cekUser.$session.code) return res.status(400).json({message: "code wrong"});
+        if(code !== cekUser.session.code) return res.status(400).json({message: "code wrong"});
         if(cekUser.session.active) return res.status(400).json({message: "user is active!"});
         cekUser.session.active = true; 
         await UserService.UpdateUser("user", cekUser);

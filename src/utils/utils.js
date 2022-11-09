@@ -1,9 +1,11 @@
 import {decrypt, encrypt} from "n-krypta";
 
 export const decryptData = (data, secret) => {
-    return decrypt(data, secret);
+    const decryptData = window.atob(data);
+    return decrypt(decryptData, secret);
 }
 
 export const encryptData = (data, secret) => {
-    return encrypt(data, secret);
+    const encryptData = window.atob(data);
+    return encrypt(encryptData, secret);
 }

@@ -8,6 +8,7 @@ const Login = async (req, res) => {
     try{
         const {body} = req;
         const data = decrypt(body.data, process.env.SECRET_KEY_DATA);
+        console.log(data);
         const {error} = Validate.UserValidate.UserLogin.validate(data);
         if(error) return res.status(400).json({message: error.details[0].message});
         const cekEmail = await UserService.GetUser("email", data.email, false);

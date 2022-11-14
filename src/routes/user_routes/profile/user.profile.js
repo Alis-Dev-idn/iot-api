@@ -4,7 +4,7 @@ import validateToken from "../../../middleware/middelware.js";
 
 const Profile = Router();
 
-Profile.get("/:username", validateToken, User.GetUserProfile);
+Profile.get("/:username", User.GetUserProfile);
 Profile.put("/:username", validateToken, User.UploadProfile);
 
 export default Profile;

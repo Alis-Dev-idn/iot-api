@@ -1,12 +1,14 @@
 import {MongoModel} from "../../mongodb/index.js";
+import fs from "fs";
 
-const RemoveUser = async (id, key) => {
+const RemoveUser = async (id, key, username) => {
     await MongoModel.UserSchema.deleteOne({_id: id});
     await MongoModel.UserProfile.deleteOne({_id: id});
-    if(key && key.length != 0)
+    if(key && key.length !== 0)
         for (let i =0; i< key.length; i++){
             await MongoModel.SensorSchema.deleteMany({key: key[i]});
         }
+    await fs.rmSync(`./data/${username}`, {recursive: true});
     return "ok";
 }
 

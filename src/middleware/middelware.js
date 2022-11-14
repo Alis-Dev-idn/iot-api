@@ -3,10 +3,13 @@ import {config} from "dotenv";
 config();
 
 const validateToken = (req, res, next) => {
-    const key = req.headers.authorization.split(" ")[1];
+    let key = req.headers.authorization;
     if(!key) return res.status(400).json({message: "token is required"});
     try{
-        jwt.verify(key, process.env.PRIVAT_KEY);
+        key = key.split(" ");
+        jwt.verify(key[1], process.env.PRIVAT_KEY);
+        const decode = jwt.decode(key[1]);
+        req._id = decode.data.id;
         next();
     }catch (err){
         res.status(401).json({message: "token expired"});

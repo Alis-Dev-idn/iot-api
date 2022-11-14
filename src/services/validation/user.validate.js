@@ -25,9 +25,18 @@ const UserProfile = joi.object({
     key: joi.array().default([])
 });
 
+const UpdateUser = joi.object({
+    name: joi.string().required(),
+    username: joi.string().required(),
+    email: joi.string().required(),
+    new_username: joi.string().default(""),
+    new_email: joi.string().default("")
+});
+
 
 export default {
     CreateUser,
     UserLogin,
-    UserProfile
+    UserProfile,
+    UpdateUser
 }

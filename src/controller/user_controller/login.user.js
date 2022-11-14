@@ -33,10 +33,8 @@ const Login = async (req, res) => {
 }
 
 const GenerateToken = async (id) => {
-    let date = new Date();
-    date = date.setDate(date.getHours() + 7);
     return await jwt.sign({
-        exp: Math.floor(Date(date) / 1000) + (60*60),
+        exp: Math.floor(new Date() / 1000) + (60*60),
         data: {id: id}
     }, process.env.PRIVAT_KEY);
 }

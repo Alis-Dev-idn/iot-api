@@ -1,4 +1,5 @@
 import {UserService} from "../../../services/index.js";
+import fs from "fs";
 
 
 const GetUserProfile = async (req, res) => {
@@ -8,8 +9,8 @@ const GetUserProfile = async (req, res) => {
         if(!user) return res.status(404).json({message: "user not found"});
         const profile = await UserService.GetUser("profile", user._id);
         if(!profile) return res.status(404).json({message: "profile user not found"});
-        console.log(profile);
-        res.status(200).json({message: "ok"});
+        if(!fs.existsSync(profile.img_profile)) return res.status(404).json({message: "file not found"});
+        res.download(profile.img_profile);
     }catch (err){
         console.log(err);
         res.status(500).json({message: "Internal Error"});

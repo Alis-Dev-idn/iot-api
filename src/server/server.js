@@ -4,6 +4,7 @@ import morgan from "morgan";
 import https from "https";
 import http from "http";
 import fs from "fs";
+import fileUpload from "express-fileupload";
 import Routes from "../routes/index.js";
 import {StartMongoDb} from "../mongodb/index.js";
 import {RunSocket} from "../socket.io/index.js"
@@ -23,6 +24,7 @@ const Run = () => {
    app.use(morgan("dev"));
    app.use(express.json({limit: "10MB"}));
    app.use(express.urlencoded({extended: false}));
+   app.use(fileUpload({limit: {fileSize: 50 *1024 * 1024}}));
 
    if(process.env.SSL && process.env.SSL === "true") {
       const config = {

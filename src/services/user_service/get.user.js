@@ -4,7 +4,12 @@ const GetUser = async (by, data, hidden) => {
     if(by === "id") return await ById(data, hidden);
     if(by === "name") return await ByName(data, hidden);
     if(by === "email") return await ByEmail(data, hidden);
+    if(by === "profile") return await byProfile(data);
     if(by === "") return await MongoModel.UserSchema.find({}, {password: 0, session: 0, __v: 0}).limit(data.limit).skip(data.offset).sort({createdAt: -1});
+}
+
+const byProfile = async (id) => {
+    return await MongoModel.UserProfile.findOne({_id: id});
 }
 
 const ById = async (id, hidden) => {

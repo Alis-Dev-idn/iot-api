@@ -42,7 +42,7 @@ const CreateDefaultProfile = async (username) => {
     const {_id} = await UserService.GetUser("name", username, false);
     const default_profile = {
         _id: _id,
-        img_profile: `/data/${username}/profile/default.png`,
+        img_profile: `./data/default/profile/default.png`,
         topic: [],
         subscribe: [],
         key: []

@@ -29,8 +29,6 @@ const UpdateUser = joi.object({
     name: joi.string().required(),
     username: joi.string().required(),
     email: joi.string().required(),
-    new_username: joi.string().default(""),
-    new_email: joi.string().default("")
 });
 
 

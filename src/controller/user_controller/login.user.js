@@ -20,6 +20,7 @@ const Login = async (req, res) => {
             status: "success",
             session: "1h",
             data: {
+                name: cekEmail.name,
                 username: cekEmail.username,
                 email: cekEmail.email,
                 role: cekEmail.role,

@@ -31,10 +31,17 @@ const UpdateUser = joi.object({
     email: joi.string().required(),
 });
 
+const UpdatePassword = joi.object({
+    password: joi.string().min(6).required(),
+    new_password: joi.string().min(6).required(),
+    confirm_password: joi.string().min(6).required()
+})
+
 
 export default {
     CreateUser,
     UserLogin,
     UserProfile,
-    UpdateUser
+    UpdateUser,
+    UpdatePassword
 }

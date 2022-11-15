@@ -9,6 +9,7 @@ UserRoute.get("/", User.Get);
 UserRoute.post("/", User.Create);
 UserRoute.post("/login", User.Login);
 UserRoute.put("/", validateToken, User.UpdateUser);
+UserRoute.put("/password", validateToken, User.UpdatePassword);
 UserRoute.delete("/:id", validateToken, User.Delete);
 
 export default UserRoute;

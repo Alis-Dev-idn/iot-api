@@ -1,4 +1,4 @@
-import {AppService, Validate} from "../../services/index.js";
+import {AppService, DeviceService, Validate} from "../../services/index.js";
 
 
 const DeleteDevice = async (req, res) => {
@@ -15,6 +15,7 @@ const DeleteDevice = async (req, res) => {
 
         getApp.device = getApp.device.filter(item => item !== data.device);
         await AppService.UpdateApp(id, getApp);
+        await DeviceService.DropDbDevice(data.device);
         res.status(200).json({message: "success delete one Device"});
     }catch (error){
         console.log(error);

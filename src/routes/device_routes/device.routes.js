@@ -3,6 +3,7 @@ import {DeviceController} from "../../controller/index.js";
 
 const Device = Router();
 
-Device.post("/", DeviceController.AddDevice);
+Device.post("/", DeviceController.sendData);
+Device.delete("/:device", DeviceController.dropDataDevice);
 
 export default Device;

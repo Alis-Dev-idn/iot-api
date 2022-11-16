@@ -1,5 +1,9 @@
-import AddDataDevice from "./add.data.device.js";
+import SendDataDevice from "./send.data.device.js";
+import DropDbDevice from "./drop.db.device.js";
+
+
 
 export default {
-    AddDataDevice
+    SendDataDevice,
+    DropDbDevice
 }

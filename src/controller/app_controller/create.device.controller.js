@@ -10,13 +10,16 @@ const CreateDevice = async (req, res) => {
         if(!Validate.DbValidate(id)) return res.status(400).json({message: "Id not Valid"});
 
         const cekApp = await AppService.GetApp("id", id);
-        const getArrApp = cekApp.device.find(items => items === data.device);
-        if(getArrApp) return res.status(400).json({message: "Device Already Used"});
+        const cekNameApp = cekApp.application.find(items => items === data.application);
+        if(!cekNameApp) return res.status(400).json({message: "Application Not Found"});
+
+        const cekNameDevice = cekApp.device.find(items => items.name === data.name);
+        if(cekNameDevice) return res.status(400).json({message: "Device Already Used"});
 
         if(cekApp.device.length === 0) {
-            cekApp.device = [`${data.device}`]
+            cekApp.device = [data]
         }else{
-            cekApp.device.push(data.device)
+            cekApp.device.push(data)
         }
 
         await AppService.UpdateApp(id, cekApp);

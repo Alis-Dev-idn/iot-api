@@ -6,9 +6,9 @@ const sendData = async (req, res) => {
         const data = req.body;
         const {error} = Validate.AddDeviceData.validate(data);
         if(error) return res.status(400).json({message: error.details[0].message});
-        const cekDevice = await AppService.GetApp("device", data.device);
+        const cekDevice = await AppService.GetApp("device", data.name);
         if(!cekDevice) return res.status(400).json({message: "Device Not Found"});
-        await DeviceService.SendDataDevice(data.device, data);
+        await DeviceService.SendDataDevice(data.name, data);
         res.status(200).json({message: "ok"});
     }catch (error){
         console.log(error);

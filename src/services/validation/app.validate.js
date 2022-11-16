@@ -6,7 +6,8 @@ const AppCreate = joi.object({
 });
 
 const AddDevice = joi.object({
-    device: joi.string().required(),
+    name: joi.string().required(),
+    application: joi.string().required()
 })
 
 export default {

@@ -4,7 +4,8 @@ import validateToken from "../../middleware/middelware.js";
 
 const Device = Router();
 
-Device.get("/", validateToken, DeviceController.getDataDevice)
+Device.get("/", validateToken, DeviceController.getDataDevice);
+Device.get("/count", validateToken, DeviceController.getCountDevice);
 Device.post("/", DeviceController.sendData);
 
 export default Device;

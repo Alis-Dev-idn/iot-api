@@ -16,7 +16,7 @@ const UploadProfile = async (req, res) => {
         const profile = await UserService.GetUser("profile", user._id, false);
         if(!profile) return res.status(404).json({message: "Profile User not found"});
 
-        profile.img_profile = await executeFile(profile, user.username, file);
+        profile.img_profile = await executeFile(profile, user._id, file);
 
         await UserService.UpdateUser("profile", profile);
         res.status(200).json({message: "ok"});
@@ -26,21 +26,20 @@ const UploadProfile = async (req, res) => {
     }
 }
 
-const executeFile = async (data, username, file) => {
-    const path = `./data/${username}/profile/`
+const executeFile = async (data, id, file) => {
+    const path = `./data/${id}/profile/`
     if(data.img_profile !== "./data/default/profile/default.png") {
-        const lastPath = data.img_profile.split("/profile");
-        await fs.rmSync(`${lastPath[0]}`, {recursive: true});
+        await fs.rmSync(data.img_profile, {recursive: true});
     }
 
     // if(!fs.existsSync(data.img_profile)) {
         fs.mkdirSync(path, {recursive: true});
     // }
 
-    await file.mv(`${path}` + `profile_${username}.png`, async function(err){
+    await file.mv(`${path}` + `profile_${id}.png`, async function(err){
         if(err) throw err;
     });
-    return `${path}profile_${username}.png`;
+    return `${path}profile_${id}.png`;
 }
 
 export default UploadProfile;

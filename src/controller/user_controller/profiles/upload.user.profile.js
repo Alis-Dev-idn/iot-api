@@ -29,7 +29,8 @@ const UploadProfile = async (req, res) => {
 const executeFile = async (data, username, file) => {
     const path = `./data/${username}/profile/`
     if(data.img_profile !== "./data/default/profile/default.png") {
-        await fs.rmSync(`./data/${username}`, {recursive: true});
+        const lastPath = data.img_profile.split("/profile");
+        await fs.rmSync(`${lastPath[0]}`, {recursive: true});
     }
 
     // if(!fs.existsSync(data.img_profile)) {

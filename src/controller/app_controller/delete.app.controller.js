@@ -3,10 +3,9 @@ import {AppService, DeviceService, Validate} from "../../services/index.js";
 
 const DeleteApp = async (req, res) => {
     try{
-        const data = req.body;
+        const data = req.query;
         const id = req._id;
-        const {error} = Validate.AppValidate.AppCreate.validate(data);
-        if(error) return res.status(400).json({message: error.details[0].message});
+        if(!data.application) return res.status(400).json({message: "Application is required"});
         const getApp = await AppService.GetApp("id", id);
         if(!getApp) res.status(404).json({message: "Application not Found"});
 

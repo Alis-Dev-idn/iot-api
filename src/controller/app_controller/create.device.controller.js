@@ -16,7 +16,7 @@ const CreateDevice = async (req, res) => {
         if(!cekNameApp) return res.status(400).json({message: "Application Not Found"});
 
         const cekNameDevice = cekApp.device.find(items => items.name === data.name);
-        if(cekNameDevice) return res.status(400).json({message: "Device Already Used"});
+        if(cekNameDevice) return res.status(400).json({message: `Device Already Used in ${cekNameDevice.application}`});
 
         if(cekApp.device.length === 0) {
             cekApp.device = [data]

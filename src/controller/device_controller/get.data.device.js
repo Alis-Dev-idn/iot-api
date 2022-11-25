@@ -8,6 +8,7 @@ const getDataDevice = async (req, res) => {
         if(!data || !data.device) return res.status(400).json({message: "device is required"});
         if(!data.limit) data.limit = 5;
         if(!data.skip) data.skip = 0;
+        if(data.limit > 100) res.status(400).json({message: "maximum limit is 100"});
         const user = await UserService.GetUser("id", id);
         if(!user) return res.status(400).json({message: "User Not Found"});
 

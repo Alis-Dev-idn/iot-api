@@ -6,7 +6,7 @@ const AppCreate = joi.object({
 });
 
 const AddDevice = joi.object({
-    name: joi.string().required(),
+    name: joi.string().min(5).required(),
     application: joi.string().required()
 })
 

@@ -15,7 +15,7 @@ const listenMessageNode = (socket) => {
         try{
             const status = await SaveDataSocket(data);
             socket.emit("send_data", status);
-            socket.broadcast.emit(`accept_${data.name}`, data);
+            socket.broadcast.emit(`accept_${data.name}`, {...data, createdAt: Math.floor(new Date())});
         }catch (err){
             socket.emit("send_data", err);
         }

@@ -12,12 +12,12 @@ const DeleteDevice = async (req, res) => {
         const cekNameApp = getApp.application.find(item => item === data.application);
         if(!cekNameApp) return res.status(400).json({message: "Application Not Found"});
 
-        const cekNameDevice = getApp.device.find(items => items.name === data.name);
+        const cekNameDevice = getApp.device.find(items => items.name === `${id}-${data.name}`);
         if(!cekNameDevice) return res.status(400).json({message: "Device not found"});
 
-        getApp.device = getApp.device.filter(item => item.name !== data.name);
+        getApp.device = getApp.device.filter(item => item.name !== `${id}-${data.name}`);
         await AppService.UpdateApp(id, getApp);
-        await DeviceService.DropDbDevice(data.name);
+        await DeviceService.DropDbDevice(`${id}-${data.name}`);
         res.status(200).json({message: "success delete one Device"});
     }catch (error){
         console.log(error);

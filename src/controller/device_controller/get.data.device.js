@@ -15,10 +15,10 @@ const getDataDevice = async (req, res) => {
         const cekApp = await AppService.GetApp("id", id);
         if(!cekApp) return res.status(400).json({message: "Application Not Found"});
 
-        const cekDevice = cekApp.device.find(items => items.name === data.device);
+        const cekDevice = cekApp.device.find(items => items.name === `${id}-${data.device}`);
         if(!cekDevice) return res.status(400).json({message: "Device Not Found"});
 
-        const result = await DeviceService.GetDevice(data.device, data.limit, data.skip);
+        const result = await DeviceService.GetDevice(`${id}-${data.device}`, data.limit, data.skip);
         res.status(200).json(result);
     }catch (err){
         console.log(err)

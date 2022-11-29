@@ -14,10 +14,10 @@ const listenMessageNode = (socket) => {
     socket.on("send_data", async (data) => {
         try{
             const status = await SaveDataSocket(data);
-            socket.emit("send_data", status);
-            socket.broadcast.emit(`accept_${data.name}`, {...data, createdAt: Math.floor(new Date())});
+            socket.emit(data.key, status);
+            socket.broadcast.emit(data.key, {...data, createdAt: Math.floor(new Date())});
         }catch (err){
-            socket.emit("send_data", err);
+            socket.emit(data.key, {error: err});
         }
     });
 }

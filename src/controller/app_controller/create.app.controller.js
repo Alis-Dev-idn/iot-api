@@ -10,7 +10,7 @@ const CreateApp = async (req, res) => {
         if(!Validate.DbValidate(id)) return res.status(400).json({message: "Id not Valid"});
 
         const cekApp = await AppService.GetApp("id", id);
-        if(!cekApp) return CreateToDatabase({_id: id, device: [`${data.application}`]}, res);
+        if(!cekApp) return CreateToDatabase({_id: id, application: [`${data.application}`]}, res);
 
         const getArrApp = cekApp.application.find(items => items === data.application);
         if(getArrApp) return res.status(400).json({message: "Application Already Used"});

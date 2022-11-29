@@ -9,7 +9,7 @@ const GetListDevice = async (req, res) => {
         const getApp = await AppService.GetApp("id", id);
         const findlistDevice = getApp.device.filter(items => items.application === name.application);
         findlistDevice.map(items => {
-            device.push(items.name);
+            device.push({name: items.name, online: false});
         })
         res.status(200).json({data: device});
     }catch (err){

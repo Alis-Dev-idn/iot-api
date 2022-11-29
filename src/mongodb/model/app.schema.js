@@ -6,6 +6,7 @@ const AppSchema = mongoose.Schema({
     _id: id,
     device: {
         type: Array({
+            _id: false,
             name: String,
             application: String
         }), default: []

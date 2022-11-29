@@ -30,7 +30,7 @@ const listenMessageNode = (socket) => {
 
 const sendOnlineDevice = (socket) => {
     socket.on("get_online", async () => {
-        socket.emit("send_online", connect);
+        socket.emit("get_online", connect);
     });
 }
 

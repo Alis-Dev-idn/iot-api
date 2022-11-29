@@ -8,6 +8,7 @@ const UserSchema = mongoose.Schema({
     role: {type: String, default: "user"},
     session: {
         type: Object({
+            _id: false,
             active: {type: Boolean, default: false},
             status: {type: Boolean, default: false},
             code: {type: String, default: ""},

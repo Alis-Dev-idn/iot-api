@@ -11,6 +11,7 @@ const ListenConnection = (io) => {
         });
         listenMessageNode(socket);
         sendOnlineDevice(socket);
+        listenCommand(socket);
     });
 }
 
@@ -31,6 +32,12 @@ const listenMessageNode = (socket) => {
 const sendOnlineDevice = (socket) => {
     socket.on("get_online", async () => {
         socket.emit("get_online", connect);
+    });
+}
+
+const listenCommand = (socket) => {
+    socket.on("command", (data) => {
+       socket.emit(data.device, data.text);
     });
 }
 

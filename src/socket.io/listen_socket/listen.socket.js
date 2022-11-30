@@ -21,7 +21,7 @@ const listenMessageNode = (socket) => {
             const online = connect.find(items => items.id === socket.id);
             if(!online) connect.push({id: socket.id, key: data.key});
             const status = await SaveDataSocket(data);
-            socket.broadcast.emit(data.key.split("-")[1], status);
+            socket.emit(data.key, status);
             socket.broadcast.emit(data.key, {...data, createdAt: Math.floor(new Date())});
         }catch (err){
             socket.emit(data.key.split("-")[1], {error: err});

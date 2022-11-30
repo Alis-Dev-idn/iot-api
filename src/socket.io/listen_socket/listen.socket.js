@@ -38,7 +38,7 @@ const sendOnlineDevice = (socket) => {
 const listenCommand = (socket) => {
     socket.on("command", (data) => {
         console.log(data);
-       socket.emit(data.device, {text: data.text});
+       socket.broadcast.emit(data.device, {text: data.text});
     });
 }
 

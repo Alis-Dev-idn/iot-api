@@ -7,5 +7,6 @@ const widget = Router();
 widget.post("/create", validateToken, WidgetController.CreateWidgetChar);
 widget.delete("/graph", validateToken, WidgetController.DeleteGraph);
 widget.get("/graph", validateToken, WidgetController.getGraph);
+widget.get("/list", validateToken, WidgetController.GetListWidget);
 
 export default widget;

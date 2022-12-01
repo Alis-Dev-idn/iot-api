@@ -8,7 +8,7 @@ const DeviceSchema = new mongoose.Schema({
         default: Date.now(),
         index: {expires: new Date().setDate(new Date().getDate()+5)}
     }
-}, {timestamps: true});
+}, {timestamps: { createdAt: true, updatedAt: false }});
 
 // DeviceSchema.index({"expireAt": 1}, {expireAfterSeconds: 604800})
 

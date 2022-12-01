@@ -4,6 +4,7 @@ import ActiveRoutes from "./active_routes/active.user.js";
 import Profile from "./user_routes/profile/user.profile.js";
 import appRoutes from "./app_routes/app.routes.js";
 import Device from "./device_routes/device.routes.js";
+import widget from "./widget_routes/widget.routes.js";
 
 const Routes = express();
 
@@ -12,6 +13,7 @@ Routes.use("/active", ActiveRoutes);
 Routes.use("/profile", Profile);
 Routes.use("/app", appRoutes);
 Routes.use("/device", Device);
+Routes.use("/widget", widget);
 
 /* Url wrong */
 Routes.use(function(req, res, next) {

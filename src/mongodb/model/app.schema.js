@@ -11,7 +11,16 @@ const AppSchema = mongoose.Schema({
             application: String
         }), default: []
     },
-    application: {type: Array, default: []}
+    application: {type: Array, default: []},
+    widget: {
+        type: Array({
+            _id: false,
+            widget_type: String,
+            data: String,
+            application: String,
+            device: String
+        }), default: []
+    }
 }, {timestamps: true});
 
 export default mongoose.model("app_data", AppSchema);

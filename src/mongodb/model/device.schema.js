@@ -5,4 +5,6 @@ const DeviceSchema = new mongoose.Schema({
     data: {type: Object(), required: true}
 }, {timestamps: true});
 
+DeviceSchema.index({"expireAt": 1}, {expireAfterSeconds: 604800})
+
 export default DeviceSchema;

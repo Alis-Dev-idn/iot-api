@@ -14,7 +14,7 @@ const CreateWidgetChar = async (req, res) => {
         if(!cekApp) return res.status(404).json({message: `Application ${body.application} not found`});
         const cekDevice = cekAppData.device.find(items => items.name === `${id}-${body.device}`);
         if(!cekDevice) return res.status(404).json({message: `Device ${body.device} not found`});
-        console.log(cekAppData);
+        // console.log(cekAppData);
         /* cek graph */
         if(cekAppData.widget.length !== 0){
             const cekGraph = cekAppData.widget.find(items => items.data === body.data);

@@ -19,6 +19,7 @@ const DeleteApp = async (req, res) => {
                 await DeviceService.DropDbDevice(deleteDevice[i].name);
             }
         }
+        getApp.widget = getApp.widget.filter(items => items.application !== data.application);
 
         getApp.application = getApp.application.filter(item => item !== data.application);
         await AppService.UpdateApp(id, getApp);

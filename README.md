@@ -14,10 +14,7 @@
 - coba run kembali.
 
 ## Dokumentasi
-- menyusul ...
-
-## demo
-- ```https://iot.smpvanilla.com:5042```
+- berikut link [dokumentasi]([https://](https://hackmd.io/@vgUW79EgS96dOGO-MAxbQQ/HkQRqJivs))
 
 ### Keterangan
 - belajar API IoT

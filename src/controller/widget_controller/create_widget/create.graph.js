@@ -17,7 +17,7 @@ const CreateWidgetChar = async (req, res) => {
         // console.log(cekAppData);
         /* cek graph */
         if(cekAppData.widget.length !== 0){
-            const cekGraph = cekAppData.widget.find(items => items.data === body.data);
+            const cekGraph = cekAppData.widget.find(items => items.application === body.application && items.device === body.device && items.data === body.data);
             if(cekGraph) return res.status(400).json({message: `graph ${body.data} in device ${body.device} is ready!`});
             cekAppData.widget.push(body);
         }

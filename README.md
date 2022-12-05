@@ -14,7 +14,7 @@
 - coba run kembali.
 
 ## Dokumentasi
-- berikut link [dokumentasi]([https://](https://hackmd.io/@vgUW79EgS96dOGO-MAxbQQ/HkQRqJivs))
+- berikut link [dokumentasi](https://hackmd.io/@vgUW79EgS96dOGO-MAxbQQ/HkQRqJivs)
 
 ### Keterangan
 - belajar API IoT

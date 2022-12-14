@@ -6,7 +6,7 @@ const DeviceSchema = new mongoose.Schema({
     expireAt: {
         type: Date,
         default: Date.now(),
-        index: {expires: '3d'}
+        index: {expires: 259200}
     }
 }, {timestamps: { createdAt: true, updatedAt: false }});
 
